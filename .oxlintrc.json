@@ -1,0 +1,60 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "es2022": true,
+    "node": true
+  },
+  "plugins": ["react", "jsx-a11y", "import", "nextjs"],
+  "rules": {
+    "typescript/consistent-type-imports": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/explicit-function-return-type": [
+      "error",
+      { "allowTypedFunctionExpressions": false }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          { "name": "clsx", "message": "Use 'clsx/lite' instead of 'clsx'" }
+        ],
+        "patterns": ["**/src/*", "**/index"]
+      }
+    ],
+    "react/jsx-newline": [
+      "error",
+      { "prevent": true, "allowMultilines": false }
+    ],
+    "react/require-render-return": "error",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "function-declaration",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "newline-before-return": "error",
+    "sort-exports": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/exhaustive-deps": "error",
+    "react/rules-of-hooks": "error"
+  },
+  "ignorePatterns": [
+    "node_modules/**",
+    ".next/**",
+    "out/**",
+    "dist/**",
+    "coverage/**",
+    "**/*.md",
+    "tailwind.config.ts",
+    "postcss.config.mjs",
+    "**/__mocks__/**",
+    "next.config.ts",
+    "eslint.config.mjs",
+    "oxlintrc.json"
+  ]
+}

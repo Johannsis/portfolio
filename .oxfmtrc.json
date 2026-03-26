@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "sortTailwindcss": { "attributes": ["clsx"] },
+  "sortImports": {
+    "newlinesBetween": true,
+    "internalPattern": ["@jh/"],
+    "customGroups": [
+      { "elementNamePattern": ["server-only"], "groupName": "server-only" },
+      {
+        "elementNamePattern": ["./", "../", "../*"],
+        "groupName": "relative-imports"
+      }
+    ],
+    "groups": [
+      "server-only",
+      "external",
+      "parent",
+      "sibling",
+      "index",
+      "internal",
+      "relative-imports",
+      "unknown",
+      "side_effect"
+    ]
+  }
+}

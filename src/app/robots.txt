@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: https://johannsis.github.io/portfolio/sitemap.xml
