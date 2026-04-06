@@ -45,3 +45,6 @@ yarn-error.log*
 .agent/*.tmp
 .agent/*.log
 .agent/*.cache
+
+# lighthouse
+/.lighthouseci/
