@@ -23,23 +23,8 @@
         "patterns": ["**/src/*", "**/index"]
       }
     ],
-    "react/jsx-newline": [
-      "error",
-      { "prevent": true, "allowMultilines": false }
-    ],
     "react/require-render-return": "error",
-    "react/function-component-definition": [
-      "error",
-      {
-        "namedComponents": "function-declaration",
-        "unnamedComponents": "arrow-function"
-      }
-    ],
-    "newline-before-return": "error",
-    "sort-exports": "error",
-    "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
     "react/exhaustive-deps": "error",
     "react/rules-of-hooks": "error"
   },
