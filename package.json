@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "author": "Johannes Hoersch <johanneshoersch@gmail.com>",
   "license": "MIT",
   "homepage": "https://Johannsis.github.io/portfolio",
@@ -13,6 +13,7 @@
     "lint:fix": "oxlint --fix",
     "format": "oxfmt . --write",
     "type-check": "tsc --noEmit",
+    "release": "semantic-release",
     "prune:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "prune:next": "find . -name '.next' -type d -prune -exec rm -rf '{}' +",
     "prune:all": "bun run prune:node-modules && bun run prune:next"
@@ -35,9 +36,16 @@
     "gh-pages": "^6.3.0",
     "globals": "^17.4.0",
     "husky": "^9.1.7",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
     "oxfmt": "^0.42.0",
     "oxlint": "^1.57.0",
     "postcss": "^8.5.8",
+    "semantic-release": "^25.0.1",
     "tailwindcss": "^4.2.2",
     "typescript": "6.0.2"
   },
