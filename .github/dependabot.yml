@@ -18,6 +18,10 @@ updates:
     commit-message:
       # Prefix all commit messages with "bun: "
       prefix: "chore"
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
@@ -26,5 +30,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
 
 
