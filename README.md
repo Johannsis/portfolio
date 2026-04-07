@@ -1,20 +1,26 @@
-# Johannes Hoersch — Portfolio
+# Johannes Hoersch - Portfolio
 
 Personal portfolio site for **Johannes Hoersch**, Senior Front-End Developer based in Santo Domingo, DR.
 
-Live at → **[johannsis.github.io/portfolio](https://johannsis.github.io/portfolio)**
+Live site: **[johannsis.github.io/portfolio](https://johannsis.github.io/portfolio)**
 
 ## Tech Stack
 
-| Layer      | Technology                                                       |
-| ---------- | ---------------------------------------------------------------- |
-| Framework  | [Next.js 16.2.1](https://nextjs.org) (App Router, static export) |
-| Language   | TypeScript 6.0.2                                                 |
-| Styling    | [Tailwind CSS v4](https://tailwindcss.com) (^4.2.2)              |
-| Runtime    | [Bun](https://bun.sh) (^1.3.10)                                  |
-| Linting    | [oxlint](https://oxlint.dev) (^1.57.0)                           |
-| Formatting | [oxfmt](https://oxlint.dev) (^0.42.0)                            |
-| Deployment | GitHub Actions → GitHub Pages                                    |
+| Layer                     | Technology                                                                     |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| Framework                 | [Next.js 16.2.2](https://nextjs.org) (App Router, static export in production) |
+| UI                        | [React 19.2.4](https://react.dev)                                              |
+| Language                  | [TypeScript 6.0.2](https://www.typescriptlang.org) (strict mode)               |
+| Styling                   | [Tailwind CSS v4](https://tailwindcss.com)                                     |
+| Linting                   | [oxlint 1.58.0](https://oxc.rs/docs/guide/usage/linter.html)                   |
+| Formatting                | [oxfmt 0.43.0](https://oxc.rs/docs/guide/usage/formatter.html)                 |
+| Runtime / Package Manager | [Bun 1.3.10](https://bun.sh)                                                   |
+| Deployment                | GitHub Actions + GitHub Pages                                                  |
+
+## Requirements
+
+- Node.js `>=24.0.0`
+- Bun `^1.3.10`
 
 ## Getting Started
 
@@ -23,45 +29,44 @@ bun install
 bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open `http://localhost:3000`.
 
-## Available Scripts
+## Scripts
 
-| Command              | Description                                      |
-| -------------------- | ------------------------------------------------ |
-| `bun run dev`        | Start development server with Turbopack          |
-| `bun run build`      | Create an optimised static export to `./out`     |
-| `bun run start`      | Serve the static export from `./out`             |
-| `bun run lint`       | Run oxlint                                       |
-| `bun run lint:fix`   | Run oxlint and auto-fix issues                   |
-| `bun run format`     | Format all files with oxfmt                      |
-| `bun run type-check` | Run TypeScript type-check without emitting files |
+| Command                 | Description                                             |
+| ----------------------- | ------------------------------------------------------- |
+| `bun run dev`           | Start development server (Turbopack)                    |
+| `bun run build`         | Build production app (static export in production mode) |
+| `bun run start`         | Serve static export from `out/`                         |
+| `bun run type-check`    | Run TypeScript checks (`tsc --noEmit`)                  |
+| `bun run lint`          | Run oxlint rules                                        |
+| `bun run lint:fix`      | Run oxlint with auto-fixes                              |
+| `bun run format`        | Format repository with oxfmt                            |
+| `bun run bundle:size`   | Enforce JS bundle size budgets                          |
+| `bun run lighthouse:ci` | Run Lighthouse CI against built output                  |
 
 ## Project Structure
 
-```
+```text
 src/
-├── app/              # Next.js App Router (pages, layout, metadata)
-├── components/
-│   ├── atoms/        # Base UI primitives (MouseLight, icons …)
-│   ├── molecules/    # Composed components (ContactLinks, HeaderSections …)
-│   └── organisms/   # Page-level sections (Header, AboutWidget, ExperienceSection …)
-├── data/             # Static content (user profile, experience …)
-├── flags/            # Feature flags
-├── icons/            # SVG icon components
-├── styles/           # Global CSS
-└── utility/          # Helper functions
+  app/            # App Router routes, layout, metadata, sitemap
+  components/
+    atoms/        # Low-level primitives
+    molecules/    # Composed UI blocks
+    organisms/    # Section-level UI
+  data/           # Portfolio content and section metadata
+  flags/          # Environment helpers
+  icons/          # Icon wrapper + SVG icons
+  styles/         # Global CSS + font setup
+  utility/        # Shared pure utilities
 ```
 
 ## Deployment
 
-The site is automatically built and deployed to **GitHub Pages** on every push to `main` via the [nextjs.yml](.github/workflows/nextjs.yml) workflow.
+On pushes to `main`, GitHub Actions runs lint, type-check, build, bundle size checks, Lighthouse CI, then deploys to GitHub Pages.
+
+Workflow: `.github/workflows/nextjs.yml`
 
 ## License
 
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
-
-## Requirements
-
-- Node.js `>=24.0.0`
-- Bun `^1.3.10`
+MIT. See `LICENSE`.

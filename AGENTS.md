@@ -149,13 +149,19 @@ Run these early and often. Always use `bun`.
 bun run dev                  # Start dev server with Turbopack on http://localhost:3000
 
 # Build & type-check
-bun run build                # Production build (Next.js static export → ./out)
+bun run build                # Production build (static export in production mode)
 bun run type-check           # TypeScript check — must pass before any PR
 
 # Linting
-bun run lint                 # Run ESLint across the codebase
-bun run lint:fix             # Auto-fix ESLint issues
-bun run format             # Format all files with oxfmt (write mode)
+bun run lint                 # Run oxlint across the codebase
+bun run lint:fix             # Auto-fix oxlint issues
+bun run format               # Format all files with oxfmt (write mode)
+
+# Quality checks
+bun run bundle:size          # Enforce JS bundle budgets from out/_next/static/chunks
+bun run lighthouse:ci        # Run Lighthouse CI assertions against built output
+```
+
 > Quality gates are: `bun run type-check` (zero errors) + `bun run lint` (zero warnings).
 > Both must pass before committing.
 
@@ -165,15 +171,15 @@ bun run format             # Format all files with oxfmt (write mode)
 
 | Layer           | Technology                   | Version |
 | --------------- | ---------------------------- | ------- |
-| Framework       | Next.js                      | 16.2.1  |
+| Framework       | Next.js                      | 16.2.2  |
 | UI Runtime      | React                        | 19.2.4  |
 | Language        | TypeScript (strict)          | 6.0.2   |
 | CSS             | Tailwind CSS v4              | ^4.2.2  |
-| Styling utility | clsx                         | ^2.1.1  |
+| Styling utility | clsx/lite                    | ^2.1.1  |
 | Package manager | Bun                          | ^1.3.10 |
 | Deployment      | GitHub Pages (static export) | —       |
-| Linter          | oxlint                       | ^1.57.0 |
-| Formatter       | oxfmt                        | ^0.42.0 |
+| Linter          | oxlint                       | ^1.58.0 |
+| Formatter       | oxfmt                        | ^0.43.0 |
 
 Import alias: `@jh/*` maps to `src/*`.
 
@@ -182,11 +188,11 @@ Import alias: `@jh/*` maps to `src/*`.
 ## Project Structure
 
 ```
-
 src/
 ├── app/ # Next.js App Router — layouts, pages, metadata
 │ ├── layout.tsx # Root layout (server component, imports server-only)
-│ └── page.tsx # Home page (server component)
+│ ├── page.tsx # Home page (server component)
+│ └── sitemap.ts # Static sitemap
 ├── components/
 │ ├── atoms/ # Smallest reusable units (Section, SectionTitle, MouseLight)
 │ ├── molecules/ # Composed atoms (ExperienceCard, HeaderNavItem, TechTag…)
@@ -200,9 +206,8 @@ src/
 │ ├── fonts/ # Montserrat font import
 │ └── global.css # Tailwind base + custom utilities + CSS variables
 └── utility/
-└── validation.ts # Pure utility functions
-
-````
+    └── validation.ts # Pure utility functions
+```
 
 Each component lives in its own folder: `src/components/<tier>/<Name>/index.tsx`.
 
@@ -228,7 +233,7 @@ function Section({
 }
 
 export default Section;
-````
+```
 
 ### Component Signature Rules
 
@@ -276,11 +281,11 @@ import { LegacyRef } from 'react';
 
 ### Tailwind & className Composition
 
-Use `clsx` for conditional or multi-variant class lists. Never string-concatenate
+Use `clsx/lite` for conditional class lists. Never string-concatenate
 class names with template literals.
 
 ```tsx
-import clsx from 'clsx';
+import clsx from 'clsx/lite';
 
 // ✅ Correct
 <article
@@ -317,11 +322,12 @@ Run `bun run format` to fix import order automatically.
 3. Before opening a PR:
    ```bash
    bun run type-check   # zero TypeScript errors
-   bun run lint         # zero ESLint errors
+   bun run lint         # zero oxlint errors
    bun run build        # static export must succeed
+   bun run bundle:size  # bundle budgets must pass
    ```
 4. Fill in the PR template: description, linked issue, test pages.
-5. GitHub Actions runs the build and deploys to GitHub Pages on merge to `main`.
+5. GitHub Actions runs lint, type-check, build, bundle-size, Lighthouse, deploy, and semantic-release on merge to `main`.
 
 ---
 
@@ -333,9 +339,9 @@ Run `bun run format` to fix import order automatically.
 | `src/data/user.ts`               | Portfolio content only — no logic                                     |
 | `src/styles/global.css`          | Only add utilities to existing layers; do not reorder `@layer` blocks |
 | `.github/workflows/nextjs.yml`   | Do not modify the deployment pipeline                                 |
-| `.env*` files                    | None exist; never commit secrets or API keys                          |
+| `.env*` files                    | Never commit secrets or API keys                                      |
 | `public/`                        | Static assets only; no generated or build artifacts                   |
-| `next.config.ts`                 | `output: 'export'` and `basePath` must stay intact for GitHub Pages   |
+| `next.config.ts`                 | Production `output`, `basePath`, and `assetPrefix` must stay intact   |
 
 ---
 
@@ -347,7 +353,7 @@ Run `bun run format` to fix import order automatically.
 // src/components/atoms/Badge/index.tsx
 import 'server-only';
 
-import clsx from 'clsx';
+import clsx from 'clsx/lite';
 
 interface BadgeProps {
   className?: string;
