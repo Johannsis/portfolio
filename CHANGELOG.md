@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/Johannsis/portfolio/compare/v1.0.1...v1.0.2) (2026-04-07)
+
+
+### Bug Fixes
+
+* **cicd:** Fix dependabot.yaml ([42f9e92](https://github.com/Johannsis/portfolio/commit/42f9e9265e41c65629d8fe06d42042b6c4f358b9))
+* **package:** punycode error ([354a9c1](https://github.com/Johannsis/portfolio/commit/354a9c1e382e99e70f96bd29bafe617143142a54))
+
 ## [1.0.1](https://github.com/Johannsis/portfolio/compare/v1.0.0...v1.0.1) (2026-04-07)
 
 
