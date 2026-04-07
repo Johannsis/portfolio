@@ -15,8 +15,6 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "weekly"   
-    # Updates if package is older than 7 days to make sure it's stable and malware free
-    cooldown: "7d"
     commit-message:
       # Prefix all commit messages with "bun: "
       prefix: "chore"
@@ -28,6 +26,5 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    cooldown: "7d"
 
 
