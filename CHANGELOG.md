@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Johannsis/portfolio/compare/v1.0.2...v1.0.3) (2026-04-07)
+
+
+### Bug Fixes
+
+* **cicd:** Dependabot should make one PR for all updates to reduce noise ([fd06a7a](https://github.com/Johannsis/portfolio/commit/fd06a7afe508073700208501fafc52e8fabebdd2))
+
 ## [1.0.2](https://github.com/Johannsis/portfolio/compare/v1.0.1...v1.0.2) (2026-04-07)
 
 
