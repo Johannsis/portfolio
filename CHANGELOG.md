@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Johannsis/portfolio/compare/v1.0.0...v1.0.1) (2026-04-07)
+
+
+### Bug Fixes
+
+* **security:** Added protection for supply chain attack ([e1bfeb7](https://github.com/Johannsis/portfolio/commit/e1bfeb785d62fc81bc9ad6638274bea472d9b7ed))
+
 # 1.0.0 (2026-04-06)
 
 
