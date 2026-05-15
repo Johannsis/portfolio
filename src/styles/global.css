@@ -177,6 +177,32 @@
   line-height: 1.5rem;
 }
 
+@layer base {
+  details {
+    overflow: clip;
+  }
+
+  details::details-content {
+    display: grid;
+    content-visibility: hidden;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 0.2s ease-out,
+      content-visibility 0.2s allow-discrete;
+  }
+
+  details[open]::details-content {
+    content-visibility: visible;
+    grid-template-rows: 1fr;
+  }
+
+  @starting-style {
+    details[open]::details-content {
+      grid-template-rows: 0fr;
+    }
+  }
+}
+
 @utility glassmorphism-background {
   backdrop-filter: blur(12px);
   background: oklch(0.24 0.02 258 / 0.3);
