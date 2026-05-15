@@ -11,10 +11,10 @@ function AboutWidget(): React.ReactElement {
       <p className="body-xs text-primary-80 leading-relaxed font-normal">
         I&apos;m a detail-oriented Software Engineer passionate about building
         performant, pixel-perfect, and accessible interfaces that combine
-        creative design with maintainable engineering. I love integrating
-        cutting-edge technologies with thoughtful design to create engaging user
-        experiences focused on responsiveness, performance, usability, and SEO,
-        while optimizing for Core Web Vitals.
+        creative design with maintainable code. I love integrating cutting-edge
+        technologies to create engaging user experiences focused on
+        responsiveness and performance to reach high Core Web Vitals and CrUX
+        Vis scores.
       </p>
       <AboutReadMore />
     </Section>

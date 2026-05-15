@@ -1,11 +1,8 @@
-import arrowRight from './arrowRight';
-import github from './github';
-import linkedin from './linkedin';
-import mail from './mail';
-
-export default {
-  arrowRight,
-  github,
-  linkedin,
-  mail,
+const Icons = {
+  arrowRight: () => import('./arrowRight'),
+  github: () => import('./github'),
+  linkedin: () => import('./linkedin'),
+  mail: () => import('./mail'),
 };
+
+export default Icons;
