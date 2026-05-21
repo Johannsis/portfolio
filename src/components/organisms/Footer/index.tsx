@@ -2,7 +2,7 @@ import 'server-only';
 
 function Footer(): React.ReactElement {
   return (
-    <footer className="text-primary-100 z-10 mt-12 w-full">
+    <footer className="text-primary-100 z-10 mt-12 max-w-7xl self-center">
       <div className="border-secondary-100/15 mx-auto flex w-full max-w-7xl flex-col gap-3 border-t py-10 lg:flex-row lg:items-center lg:justify-between lg:py-12">
         <p className="body-xs leading-relaxed font-normal">
           Designed with <span aria-hidden="true">💚</span> in{' '}

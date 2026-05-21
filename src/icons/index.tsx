@@ -2,8 +2,8 @@ import 'server-only';
 
 import clsx from 'clsx/lite';
 
-import type { IconNames } from './constants/iconNames';
-import svgs from './svgs';
+import type { IconNames } from './constants/types';
+import Icons from './svgs';
 
 interface IconComponentProps {
   'aria-hidden'?: boolean;
@@ -16,7 +16,7 @@ interface IconComponentProps {
   width?: number | string;
 }
 
-export function Icon({
+async function Icon({
   'aria-hidden': ariaHidden,
   className,
   height,
@@ -25,15 +25,19 @@ export function Icon({
   stroke,
   viewBox,
   width,
-}: IconComponentProps): null | React.ReactElement {
+}: IconComponentProps): Promise<null | React.ReactElement> {
   const heightValue = size || height;
   const widthValue = size || width;
 
-  const IconComponent = svgs[iconName];
+  const iconLoader = Icons[iconName];
 
-  if (!IconComponent) {
-    return null;
-  }
+  if (!iconLoader) return null;
+
+  const iconModule = await iconLoader();
+
+  if (!iconModule?.default) return null;
+
+  const IconComponent = iconModule.default;
 
   return (
     <span aria-hidden={ariaHidden} className="relative flex">
@@ -47,3 +51,5 @@ export function Icon({
     </span>
   );
 }
+
+export { Icon };
